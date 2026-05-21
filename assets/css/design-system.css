@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
+:root {
+  --bwx-primary: #4F46E5;
+  --bwx-primary-hover: #4338CA;
+  --bwx-primary-light: #EEF2FF;
+  --bwx-dark: #0A0C29;
+  --bwx-dark-subtle: #13163D;
+  --bwx-text: #111827;
+  --bwx-text-muted: #6B7280;
+  --bwx-border: #E5E7EB;
+  --bwx-bg: #F9FAFB;
+  --bwx-bg-white: #FFFFFF;
+  --bwx-success: #16A34A;
+  --bwx-warning: #D97706;
+  --bwx-danger: #DC2626;
+  --bwx-info: #2563EB;
+
+  --bwx-font: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bwx-text-xs: 0.75rem;
+  --bwx-text-sm: 0.875rem;
+  --bwx-text-base: 1rem;
+  --bwx-text-lg: 1.125rem;
+  --bwx-text-xl: 1.25rem;
+  --bwx-text-2xl: 1.5rem;
+  --bwx-font-normal: 400;
+  --bwx-font-medium: 500;
+  --bwx-font-semibold: 600;
+  --bwx-font-bold: 700;
+
+  --bwx-space-1: 4px;
+  --bwx-space-2: 8px;
+  --bwx-space-3: 12px;
+  --bwx-space-4: 16px;
+  --bwx-space-5: 20px;
+  --bwx-space-6: 24px;
+  --bwx-space-7: 28px;
+  --bwx-space-8: 32px;
+  --bwx-space-9: 36px;
+  --bwx-space-10: 40px;
+  --bwx-space-11: 44px;
+  --bwx-space-12: 48px;
+
+  --bwx-radius-sm: 4px;
+  --bwx-radius-md: 6px;
+  --bwx-radius-lg: 8px;
+  --bwx-radius-xl: 12px;
+  --bwx-radius-full: 9999px;
+
+  --bwx-shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --bwx-shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --bwx-shadow-lg: 0 10px 15px rgba(0,0,0,0.08);
+
+  --bwx-border-width: 1px;
+  --bwx-layout-max-width: 1440px;
+  --bwx-sidebar-width: 260px;
+  --bwx-table-min-width: 720px;
+  --bwx-kanban-column-width: 280px;
+  --bwx-scrollbar-size: 8px;
+  --bwx-page-min-height: 100vh;
+  --bwx-transition: 150ms ease;
+}
+
+#bwx-app {
+  min-height: var(--bwx-page-min-height);
+  background: var(--bwx-bg);
+  color: var(--bwx-text);
+  font-family: var(--bwx-font);
+  font-size: var(--bwx-text-base);
+  font-weight: var(--bwx-font-normal);
+}
+
+#bwx-app *,
+#bwx-app *::before,
+#bwx-app *::after {
+  box-sizing: border-box;
+}
+
+#bwx-app .bwx-page {
+  display: flex;
+  min-height: var(--bwx-page-min-height);
+  background: var(--bwx-bg);
+}
+
+#bwx-app .bwx-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--bwx-space-8);
+}
+
+#bwx-app .bwx-container {
+  width: 100%;
+  max-width: var(--bwx-layout-max-width);
+  margin: 0 auto;
+}
+
+#bwx-app .bwx-section {
+  margin-bottom: var(--bwx-space-8);
+}
+
+#bwx-app .bwx-heading {
+  margin: 0 0 var(--bwx-space-2);
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-2xl);
+  font-weight: var(--bwx-font-bold);
+}
+
+#bwx-app .bwx-subheading {
+  margin: 0;
+  color: var(--bwx-text-muted);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-normal);
+}
+
+#bwx-app .bwx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--bwx-sidebar-width), 1fr));
+  gap: var(--bwx-space-6);
+}
+
+#bwx-app .bwx-sidebar {
+  flex: 0 0 var(--bwx-sidebar-width);
+  width: var(--bwx-sidebar-width);
+  min-height: var(--bwx-page-min-height);
+  padding: var(--bwx-space-6);
+  background: var(--bwx-dark);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-sidebar-brand {
+  margin: 0 0 var(--bwx-space-8);
+  color: var(--bwx-bg-white);
+  font-size: var(--bwx-text-xl);
+  font-weight: var(--bwx-font-bold);
+}
+
+#bwx-app .bwx-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bwx-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#bwx-app .bwx-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--bwx-space-3);
+  padding: var(--bwx-space-3) var(--bwx-space-4);
+  border-radius: var(--bwx-radius-lg);
+  color: var(--bwx-bg-white);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-medium);
+  text-decoration: none;
+  transition: background var(--bwx-transition), color var(--bwx-transition);
+}
+
+#bwx-app .bwx-sidebar-link:hover,
+#bwx-app .bwx-sidebar-link:focus,
+#bwx-app .bwx-sidebar-link.bwx-is-active {
+  background: var(--bwx-dark-subtle);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--bwx-kanban-column-width), 1fr));
+  gap: var(--bwx-space-6);
+}
+
+#bwx-app .bwx-stat-card {
+  padding: var(--bwx-space-6);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-xl);
+  background: var(--bwx-bg-white);
+  box-shadow: var(--bwx-shadow-sm);
+}
+
+#bwx-app .bwx-stat-label {
+  margin: 0 0 var(--bwx-space-2);
+  color: var(--bwx-text-muted);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-medium);
+}
+
+#bwx-app .bwx-stat-value {
+  margin: 0;
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-2xl);
+  font-weight: var(--bwx-font-bold);
+}
+
+#bwx-app .bwx-table-wrap {
+  overflow: auto;
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-xl);
+  background: var(--bwx-bg-white);
+  box-shadow: var(--bwx-shadow-sm);
+}
+
+#bwx-app .bwx-table {
+  width: 100%;
+  min-width: var(--bwx-table-min-width);
+  border-collapse: collapse;
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-sm);
+}
+
+#bwx-app .bwx-table th,
+#bwx-app .bwx-table td {
+  padding: var(--bwx-space-4);
+  border-bottom: var(--bwx-border-width) solid var(--bwx-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+#bwx-app .bwx-table th {
+  background: var(--bwx-bg);
+  color: var(--bwx-text-muted);
+  font-size: var(--bwx-text-xs);
+  font-weight: var(--bwx-font-semibold);
+  text-transform: uppercase;
+}
+
+#bwx-app .bwx-table tr:hover td {
+  background: var(--bwx-primary-light);
+}
+
+#bwx-app .bwx-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bwx-space-1);
+  padding: var(--bwx-space-1) var(--bwx-space-3);
+  border-radius: var(--bwx-radius-full);
+  background: var(--bwx-primary-light);
+  color: var(--bwx-primary);
+  font-size: var(--bwx-text-xs);
+  font-weight: var(--bwx-font-semibold);
+}
+
+#bwx-app .bwx-badge-success {
+  background: var(--bwx-success);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-badge-warning {
+  background: var(--bwx-warning);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-badge-danger {
+  background: var(--bwx-danger);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-badge-info {
+  background: var(--bwx-info);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-kanban {
+  display: flex;
+  gap: var(--bwx-space-6);
+  overflow-x: auto;
+  padding-bottom: var(--bwx-space-2);
+}
+
+#bwx-app .bwx-kanban-column {
+  flex: 0 0 var(--bwx-kanban-column-width);
+  padding: var(--bwx-space-4);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-xl);
+  background: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-kanban-title {
+  margin: 0 0 var(--bwx-space-4);
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-semibold);
+}
+
+#bwx-app .bwx-kanban-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bwx-space-3);
+  min-height: var(--bwx-space-12);
+}
+
+#bwx-app .bwx-kanban-card {
+  padding: var(--bwx-space-4);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-lg);
+  background: var(--bwx-bg-white);
+  box-shadow: var(--bwx-shadow-sm);
+  color: var(--bwx-text);
+}
+
+#bwx-app .bwx-kanban-card-title {
+  margin: 0 0 var(--bwx-space-2);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-semibold);
+}
+
+#bwx-app .bwx-kanban-card-text {
+  margin: 0;
+  color: var(--bwx-text-muted);
+  font-size: var(--bwx-text-xs);
+}
+
+#bwx-app .bwx-form {
+  display: grid;
+  gap: var(--bwx-space-5);
+}
+
+#bwx-app .bwx-form-row {
+  display: grid;
+  gap: var(--bwx-space-2);
+}
+
+#bwx-app .bwx-label {
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-medium);
+}
+
+#bwx-app .bwx-input,
+#bwx-app .bwx-select,
+#bwx-app .bwx-textarea {
+  width: 100%;
+  padding: var(--bwx-space-3) var(--bwx-space-4);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-lg);
+  background: var(--bwx-bg-white);
+  color: var(--bwx-text);
+  font-family: var(--bwx-font);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-normal);
+  transition: border-color var(--bwx-transition), box-shadow var(--bwx-transition);
+}
+
+#bwx-app .bwx-textarea {
+  min-height: calc(var(--bwx-space-12) * 2);
+  resize: vertical;
+}
+
+#bwx-app .bwx-input:focus,
+#bwx-app .bwx-select:focus,
+#bwx-app .bwx-textarea:focus {
+  border-color: var(--bwx-primary);
+  box-shadow: var(--bwx-shadow-md);
+  outline: none;
+}
+
+#bwx-app .bwx-help-text {
+  margin: 0;
+  color: var(--bwx-text-muted);
+  font-size: var(--bwx-text-xs);
+}
+
+#bwx-app .bwx-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bwx-space-2);
+  padding: var(--bwx-space-3) var(--bwx-space-5);
+  border: var(--bwx-border-width) solid var(--bwx-primary);
+  border-radius: var(--bwx-radius-lg);
+  background: var(--bwx-primary);
+  color: var(--bwx-bg-white);
+  font-family: var(--bwx-font);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--bwx-transition), border-color var(--bwx-transition);
+}
+
+#bwx-app .bwx-button:hover,
+#bwx-app .bwx-button:focus {
+  border-color: var(--bwx-primary-hover);
+  background: var(--bwx-primary-hover);
+  color: var(--bwx-bg-white);
+}
+
+#bwx-app .bwx-button-secondary {
+  border-color: var(--bwx-border);
+  background: var(--bwx-bg-white);
+  color: var(--bwx-text);
+}
+
+#bwx-app .bwx-button-secondary:hover,
+#bwx-app .bwx-button-secondary:focus {
+  border-color: var(--bwx-primary);
+  background: var(--bwx-primary-light);
+  color: var(--bwx-primary);
+}
+
+#bwx-app * {
+  scrollbar-color: var(--bwx-primary) var(--bwx-bg);
+  scrollbar-width: thin;
+}
+
+#bwx-app *::-webkit-scrollbar {
+  width: var(--bwx-scrollbar-size);
+  height: var(--bwx-scrollbar-size);
+}
+
+#bwx-app *::-webkit-scrollbar-track {
+  background: var(--bwx-bg);
+}
+
+#bwx-app *::-webkit-scrollbar-thumb {
+  background: var(--bwx-primary);
+  border-radius: var(--bwx-radius-full);
+}
