@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'flowbite/dist/flowbite.css';
 
 :root {
   --bwx-primary: #4F46E5;

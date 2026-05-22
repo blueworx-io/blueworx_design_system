@@ -1,0 +1,59 @@
+{
+  "name": "@blueworx-io/blueworx_design_system",
+  "version": "1.0.0",
+  "description": "Shared Blueworx design system assets for WordPress plugin admin screens.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueworx-io/blueworx_design_system.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src",
+    "assets",
+    "AGENTS.md"
+  ],
+  "main": "./dist/core/index.js",
+  "style": "./dist/core/index.css",
+  "exports": {
+    ".": {
+      "import": "./dist/core/index.js",
+      "style": "./dist/core/index.css"
+    },
+    "./core.css": "./dist/core/index.css",
+    "./gantt": {
+      "import": "./dist/gantt/index.js",
+      "style": "./dist/gantt/index.css"
+    },
+    "./gantt.css": "./dist/gantt/index.css",
+    "./calendar": {
+      "import": "./dist/calendar/index.js",
+      "style": "./dist/calendar/index.css"
+    },
+    "./calendar.css": "./dist/calendar/index.css"
+  },
+  "scripts": {
+    "build": "npm run build:core && npm run build:gantt && npm run build:calendar",
+    "build:core": "postcss src/core/index.css --output dist/core/index.css && esbuild src/core/index.js --bundle --format=iife --global-name=BwxCoreBundle --outfile=dist/core/index.js",
+    "build:gantt": "postcss src/gantt/index.css --output dist/gantt/index.css && esbuild src/gantt/index.js --bundle --format=iife --global-name=BwxGanttBundle --outfile=dist/gantt/index.js",
+    "build:calendar": "postcss src/calendar/index.css --output dist/calendar/index.css && esbuild src/calendar/index.js --bundle --format=iife --global-name=BwxCalendarBundle --outfile=dist/calendar/index.js"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "flowbite": "^4.0.1",
+    "frappe-gantt": "^1.0.4",
+    "fullcalendar": "^6.1.19",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "esbuild": "^0.27.0",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1"
+  }
+}

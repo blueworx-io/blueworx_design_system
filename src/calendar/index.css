@@ -1,0 +1,46 @@
+#bwx-app .fc {
+  --fc-border-color: var(--bwx-border);
+  --fc-button-bg-color: var(--bwx-primary);
+  --fc-button-border-color: var(--bwx-primary);
+  --fc-button-hover-bg-color: var(--bwx-primary-hover);
+  --fc-button-hover-border-color: var(--bwx-primary-hover);
+  --fc-button-active-bg-color: var(--bwx-primary-hover);
+  --fc-button-active-border-color: var(--bwx-primary-hover);
+  --fc-event-bg-color: var(--bwx-primary);
+  --fc-event-border-color: var(--bwx-primary);
+  --fc-event-text-color: var(--bwx-bg-white);
+  --fc-page-bg-color: var(--bwx-bg-white);
+  --fc-neutral-bg-color: var(--bwx-bg);
+  --fc-list-event-hover-bg-color: var(--bwx-primary-light);
+  color: var(--bwx-text);
+  font-family: var(--bwx-font);
+}
+
+#bwx-app .fc .fc-toolbar-title {
+  color: var(--bwx-text);
+  font-size: var(--bwx-text-xl);
+  font-weight: var(--bwx-font-bold);
+}
+
+#bwx-app .fc .fc-button {
+  border-radius: var(--bwx-radius-lg);
+  font-family: var(--bwx-font);
+  font-size: var(--bwx-text-sm);
+  font-weight: var(--bwx-font-semibold);
+}
+
+#bwx-app .fc .fc-col-header-cell-cushion,
+#bwx-app .fc .fc-daygrid-day-number {
+  color: var(--bwx-text);
+  text-decoration: none;
+}
+
+#bwx-app .fc .fc-day-today {
+  background: var(--bwx-primary-light);
+}
+
+#bwx-app .fc .fc-event {
+  border-radius: var(--bwx-radius-md);
+  font-size: var(--bwx-text-xs);
+  font-weight: var(--bwx-font-medium);
+}

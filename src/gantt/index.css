@@ -1,0 +1,58 @@
+@import 'frappe-gantt/dist/frappe-gantt.css';
+
+#bwx-app .gantt-container {
+  background: var(--bwx-bg-white);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-xl);
+  color: var(--bwx-text);
+  font-family: var(--bwx-font);
+}
+
+#bwx-app .gantt .grid-header {
+  stroke: var(--bwx-border);
+}
+
+#bwx-app .gantt .grid-row {
+  fill: var(--bwx-bg-white);
+}
+
+#bwx-app .gantt .grid-row:nth-child(even) {
+  fill: var(--bwx-bg);
+}
+
+#bwx-app .gantt .row-line,
+#bwx-app .gantt .tick {
+  stroke: var(--bwx-border);
+}
+
+#bwx-app .gantt .bar {
+  fill: var(--bwx-primary);
+}
+
+#bwx-app .gantt .bar-progress {
+  fill: var(--bwx-primary-hover);
+}
+
+#bwx-app .gantt .bar-label {
+  fill: var(--bwx-bg-white);
+  font-family: var(--bwx-font);
+}
+
+#bwx-app .gantt .lower-text,
+#bwx-app .gantt .upper-text {
+  fill: var(--bwx-text-muted);
+  font-family: var(--bwx-font);
+}
+
+#bwx-app .gantt .today-highlight {
+  fill: var(--bwx-primary-light);
+}
+
+#bwx-app .gantt .popup-wrapper {
+  background: var(--bwx-bg-white);
+  border: var(--bwx-border-width) solid var(--bwx-border);
+  border-radius: var(--bwx-radius-lg);
+  box-shadow: var(--bwx-shadow-md);
+  color: var(--bwx-text);
+  font-family: var(--bwx-font);
+}

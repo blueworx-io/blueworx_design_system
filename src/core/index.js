@@ -1,12 +1,22 @@
+import { initFlowbite } from 'flowbite';
+
 (function (window, document) {
   'use strict';
 
   var Bwx = window.Bwx || {};
 
   Bwx.initFlowbite = function () {
+    if (typeof initFlowbite === 'function') {
+      initFlowbite();
+      return true;
+    }
+
     if (typeof window.initFlowbite === 'function') {
       window.initFlowbite();
+      return true;
     }
+
+    return false;
   };
 
   Bwx.Tables = Bwx.Tables || {};
@@ -44,16 +54,26 @@
   Bwx.Kanban.init = function () {
     var columns = document.querySelectorAll('[data-bwx-kanban-col]');
 
-    if (!columns.length || typeof window.dragula !== 'function') {
-      return null;
+    if (!columns.length || !(window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.sortable === 'function')) {
+      return [];
     }
 
-    if (Bwx.Kanban.instance) {
-      return Bwx.Kanban.instance;
-    }
+    return Array.prototype.map.call(columns, function (column) {
+      var $column = window.jQuery(column);
 
-    Bwx.Kanban.instance = window.dragula(Array.prototype.slice.call(columns));
-    return Bwx.Kanban.instance;
+      if (column.dataset.bwxKanbanReady === 'true') {
+        return $column;
+      }
+
+      column.dataset.bwxKanbanReady = 'true';
+      $column.sortable({
+        connectWith: '[data-bwx-kanban-col]',
+        items: '.bwx-kanban-card',
+        placeholder: 'bwx-kanban-placeholder'
+      });
+
+      return $column;
+    });
   };
 
   Bwx.Charts = Bwx.Charts || {};

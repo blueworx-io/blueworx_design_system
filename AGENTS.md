@@ -6,23 +6,78 @@
 
 This repo is not a WordPress plugin. It must not contain PHP files.
 
-Each plugin loads:
+This repo is published as the npm package:
 
-- Tailwind CSS from its own CDN setup.
-- Flowbite from its own CDN setup.
-- Blueworx design system CSS and JS from jsDelivr.
-- Local fallback copies of the Blueworx CSS and JS in case the CDN is unavailable.
+`@blueworx-io/blueworx_design_system`
 
-CDN files:
+The package is published to GitHub Packages:
 
-- CSS: `https://cdn.jsdelivr.net/gh/blueworx-io/blueworx_design_system@main/assets/css/design-system.css`
-- JS: `https://cdn.jsdelivr.net/gh/blueworx-io/blueworx_design_system@main/assets/js/design-system.js`
+`https://npm.pkg.github.com`
 
 All Blueworx component markup should be placed inside `#bwx-app` so the design system does not override custom plugin styling outside the app area.
+
+The existing `assets/` folder is kept for compatibility until the npm package output in `dist/` is confirmed working in plugins.
+
+## Package Structure
+
+- `src/core/index.css`: tokens, shared components, Tailwind, and Flowbite styles.
+- `src/core/index.js`: Flowbite init and the core `window.Bwx` helpers.
+- `src/gantt/index.css`: Frappe Gantt styles and Blueworx overrides.
+- `src/gantt/index.js`: `Bwx.Gantt.init()`.
+- `src/calendar/index.css`: FullCalendar Blueworx overrides.
+- `src/calendar/index.js`: `Bwx.Calendar.init()`.
+- `dist/`: generated package output.
+- `assets/`: old CDN/fallback files kept until the package output is confirmed.
+
+## Installing In A Plugin Repo
+
+Add this to the plugin repo `.npmrc`:
+
+```text
+@blueworx-io:registry=https://npm.pkg.github.com
+```
+
+Then install:
+
+```bash
+npm install @blueworx-io/blueworx_design_system
+```
+
+## Importing In A Plugin Repo
+
+Core:
+
+```js
+import '@blueworx-io/blueworx_design_system/core.css';
+import '@blueworx-io/blueworx_design_system';
+```
+
+Gantt:
+
+```js
+import '@blueworx-io/blueworx_design_system/gantt.css';
+import '@blueworx-io/blueworx_design_system/gantt';
+```
+
+Calendar:
+
+```js
+import '@blueworx-io/blueworx_design_system/calendar.css';
+import '@blueworx-io/blueworx_design_system/calendar';
+```
+
+## Build Commands
+
+- `npm run build`: builds all entry points.
+- `npm run build:core`: builds core only.
+- `npm run build:gantt`: builds gantt only.
+- `npm run build:calendar`: builds calendar only.
 
 ## Design Tokens
 
 All tokens are defined in `:root`.
+
+Do not hardcode colour, spacing, or font values outside `tailwind.config.js` and CSS token definitions.
 
 ### Colours
 
@@ -148,14 +203,16 @@ The design system exposes one global object:
 Available helpers:
 
 - `Bwx.init()`: runs all safe auto-initialisers.
-- `Bwx.initFlowbite()`: initialises Flowbite if `window.initFlowbite` exists.
+- `Bwx.initFlowbite()`: initialises Flowbite when available.
 - `Bwx.Tables.init()`: initialises DataTables for all elements with `data-bwx-table`.
-- `Bwx.Kanban.init()`: initialises Dragula for all columns with `data-bwx-kanban-col`.
+- `Bwx.Kanban.init()`: initialises jQuery UI Sortable for all columns with `data-bwx-kanban-col`.
 - `Bwx.Charts.init(id, config)`: creates a Chart.js chart for the given element id or canvas element.
+- `Bwx.Gantt.init(selector, tasks, options)`: creates a Frappe Gantt chart.
+- `Bwx.Calendar.init(selector, options)`: creates and renders a FullCalendar calendar.
 
-The JS file runs `Bwx.init()` on `DOMContentLoaded`.
+The core JS file runs `Bwx.init()` on `DOMContentLoaded`.
 
-If Flowbite, DataTables, Dragula, or Chart.js are not loaded, the helper skips that feature without errors.
+If Flowbite, DataTables, jQuery UI Sortable, Chart.js, Frappe Gantt, or FullCalendar are not loaded, the helper skips that feature without errors.
 
 ## Plugin Usage Rules
 
@@ -188,11 +245,11 @@ Do not use this repo for:
 
 ## Updating Plugin Fallback Copies
 
-After changes are pushed to `main`:
+After changes are published:
 
-1. Confirm jsDelivr is serving the latest CSS and JS files.
-2. In each plugin that uses the design system, replace the local fallback CSS with the latest `assets/css/design-system.css`.
-3. Replace the local fallback JS with the latest `assets/js/design-system.js`.
-4. Test the plugin with the CDN enabled.
-5. Test again with the CDN blocked or disabled so the local fallback is confirmed.
+1. Confirm the npm package is serving the latest CSS and JS files.
+2. In each plugin that uses local fallback files, replace the fallback CSS with the latest built CSS.
+3. Replace the fallback JS with the latest built JS.
+4. Test the plugin with the package assets enabled.
+5. Test again with the fallback files so the local fallback is confirmed.
 6. If the plugin has a version number, update the plugin version before committing plugin changes.
